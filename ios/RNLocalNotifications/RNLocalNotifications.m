@@ -55,6 +55,7 @@ RCT_EXPORT_METHOD(setAndroidIcons:(NSString *)largeIconName largeIconType:(NSStr
         NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
         [md setValue:[NSNumber numberWithInteger:id] forKey:@"id"];
         [md setValue:text forKey:@"text"];
+        [md setValue:title forKey:@"title"];
         [md setValue:datetime forKey:@"datetime"];
         [md setValue:sound forKey:@"sound"];
         [md setValue:hiddendata forKey:@"hiddendata"];
