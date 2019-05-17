@@ -1,6 +1,6 @@
 {
-  "name": "react-native-local-notifications",
-  "version": "2.0.0",
+  "name": "@suehok/react-native-local-notifications",
+  "version": "2.0.1",
   "description": "Manageable local notifications for React Native on iOS and Android.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wumke/react-native-local-notifications"
+    "url": "git+https://github.com/wumke/react-native-local-notifications.git"
   },
   "keywords": [
     "react",

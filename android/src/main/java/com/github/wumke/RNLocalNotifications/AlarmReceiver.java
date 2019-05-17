@@ -45,6 +45,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 String packageName = context.getPackageName();
                 ApplicationInfo appInfo = context.getApplicationInfo();
                 String appName = context.getPackageManager().getApplicationLabel(appInfo).toString();
+                appName = intent.getExtras().getString("title", appName);
 
                 int largeIconResId;
                 largeIconResId = res.getIdentifier(largeIconName, largeIconType, packageName);

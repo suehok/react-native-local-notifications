@@ -21,8 +21,8 @@ public class RNLocalNotificationsModule extends ReactContextBaseJavaModule {
     AlarmManager alarmManager;
     String largeIconName = "ic_launcher";
     String largeIconType = "mipmap";
-    String smallIconName = "notification_small";
-    String smallIconType = "drawable";
+    String smallIconName = "ic_notification";
+    String smallIconType = "mipmap";
 
     public RNLocalNotificationsModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -36,8 +36,8 @@ public class RNLocalNotificationsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void createNotification(Integer id, String text, String datetime, String sound, String hiddendata) {
-        this.createAlarm(id, text, datetime, sound, false, hiddendata);
+    public void createNotification(Integer id, String title, String text, String datetime, String sound, String hiddendata) {
+        this.createAlarm(id,title, text, datetime, sound, false, hiddendata);
     }
 
     @ReactMethod
@@ -58,7 +58,7 @@ public class RNLocalNotificationsModule extends ReactContextBaseJavaModule {
         smallIconType = smallIconTypeNew;
     }
 
-    public void createAlarm(Integer id, String text, String datetime, String sound, boolean update, String hiddendata) {
+    public void createAlarm(Integer id, String title, String text, String datetime, String sound, boolean update, String hiddendata) {
         if(update){
             this.deleteAlarm(id);
         }
@@ -83,7 +83,8 @@ public class RNLocalNotificationsModule extends ReactContextBaseJavaModule {
         intent.putExtra("largeIconName", largeIconName);
         intent.putExtra("largeIconType", largeIconType);
         intent.putExtra("smallIconName", smallIconName);
-        intent.putExtra("smallIconType", smallIconType);
+        intent.putExtra("smallIconName", smallIconName);
+        intent.putExtra("title", title);
 
         PendingIntent mAlarmSender = PendingIntent.getBroadcast(reactContext, id, intent, 0);
 

@@ -9,9 +9,9 @@
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(createNotification:(NSInteger)id text:(NSString *)text datetime:(NSString *)datetime sound:(NSString *)sound hiddendata:(NSString *)hiddendata)
+RCT_EXPORT_METHOD(createNotification:(NSInteger)id title:(NSString *)title text:(NSString *)text datetime:(NSString *)datetime sound:(NSString *)sound hiddendata:(NSString *)hiddendata)
 {
-    [self createAlarm:id text:text datetime:datetime sound:sound update:FALSE hiddendata:(NSString *)hiddendata];
+    [self createAlarm:id title:title text:text datetime:datetime sound:sound update:FALSE hiddendata:(NSString *)hiddendata];
 };
 
 RCT_EXPORT_METHOD(deleteNotification:(NSInteger)id)
@@ -19,9 +19,9 @@ RCT_EXPORT_METHOD(deleteNotification:(NSInteger)id)
     [self deleteAlarm:id];
 };
 
-RCT_EXPORT_METHOD(updateNotification:(NSInteger)id text:(NSString *)text datetime:(NSString *)datetime sound:(NSString *)sound hiddendata:(NSString *)hiddendata)
+RCT_EXPORT_METHOD(updateNotification:(NSInteger)id title:(NSString *)title text:(NSString *)text datetime:(NSString *)datetime sound:(NSString *)sound hiddendata:(NSString *)hiddendata)
 {
-    [self createAlarm:id text:text datetime:datetime sound:sound update:TRUE hiddendata:(NSString *)hiddendata];
+    [self createAlarm:id title:title text:text datetime:datetime sound:sound update:TRUE hiddendata:(NSString *)hiddendata];
 };
 
 RCT_EXPORT_METHOD(setAndroidIcons:(NSString *)largeIconName largeIconType:(NSString *)largeIconType smallIconName:(NSString *)smallIconName smallIconType:(NSString *)smallIconType)
@@ -29,7 +29,7 @@ RCT_EXPORT_METHOD(setAndroidIcons:(NSString *)largeIconName largeIconType:(NSStr
     //Do nothing
 };
 
-- (void)createAlarm:(NSInteger)id text:(NSString *)text datetime:(NSString *)datetime sound:(NSString *)sound update:(Boolean)update hiddendata:(NSString *)hiddendata {
+- (void)createAlarm:(NSInteger)id title:(NSString *)title text:(NSString *)text datetime:(NSString *)datetime sound:(NSString *)sound update:(Boolean)update hiddendata:(NSString *)hiddendata {
     if(update){
         [self deleteAlarm:id];
     }
@@ -50,6 +50,7 @@ RCT_EXPORT_METHOD(setAndroidIcons:(NSString *)largeIconName largeIconType:(NSStr
         }
         notification.timeZone = [NSTimeZone defaultTimeZone];
         notification.alertBody = text;
+        notification.alertTitle = title;
         notification.alertAction = @"Open";
         NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
         [md setValue:[NSNumber numberWithInteger:id] forKey:@"id"];
